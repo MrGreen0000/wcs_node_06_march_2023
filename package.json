@@ -15,7 +15,6 @@
     "typeorm": "^0.3.12"
   },
   "devDependencies": {
-    "nodemon": "^2.0.21"
-   
+    "nodemon": "^2.0.21" 
   }
 }
