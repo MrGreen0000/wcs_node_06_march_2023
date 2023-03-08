@@ -1,59 +1,46 @@
-const dataSource = require("../utils").dataSource;
+const { dataSource } = require("../utils");
 const Skill = require("../entities/skill_entity");
 
 module.exports = {
     create: async (req, res) => {
         try {
-            await dataSource
-                .getRepository(Skill)
-                .save(req.body)
-            res.send("Created wilder");
+            await dataSource.getRepository(Skill).save(req.body);
         } catch (error) {
             if (error.code === "SQLITE_CONSTRAINT") {
                 res.status(409).send("The skill existing");
             }
-
+            return res.status(400).send("Something went wrong");
         }
+        res.send("Created skill");
     },
     read: async (req, res) => {
-        try {
-            const wilders = await dataSource
-                .getRepository(Skill)
-                .find()
-            res.send(wilders);
-
-        } catch (error) {
-            console.log(error)
-            res.status(404).send("Une erreur est survenue.");
-        }
-
+        const skills = await dataSource.getRepository(Skill).find();
+        res.send(skills);
     },
 
     update: async (req, res) => {
-        try {
-            await dataSource
-                .getRepository(Skill)
-                .update(req.params.id, req.body)
+        const { id } = req.params;
 
-            res.send("Updated wilder !");
-
-        } catch (error) {
-            res.status(404).send("Une erreur est survenue.");
+        const existingSkill = await dataSource
+            .getRepository(Skill)
+            .findOneBy({ id });
+        if (existingSkill === null) {
+            return res.status(404).send("Skill not found");
         }
+
+        await dataSource.getRepository(Skill).update(id, req.body);
+        res.send("Updated skill");
     },
 
     delete: async (req, res) => {
-        // DELETE http://localhost:3000/api/wilder/:id
-        try {
-            await dataSource
-                .getRepository(Skill)
-                .delete(req.params.id)
+        const { id } = req.params;
+        const existingSkill = await dataSource.getRepository(Skill).findOneBy({ id });
+        if (existingSkill === null) {
+            return res.status(404).send("Skill not found");
+        }
 
-            res.send(data);
-        }
-        catch (error) {
-            res.status(404).send("Une erreur est survenue");
-        }
+        await dataSource.getRepository(Skill).delete(id);
+
+        res.send("Deleted skill");
     },
-
 };

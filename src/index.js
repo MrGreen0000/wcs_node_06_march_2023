@@ -1,5 +1,5 @@
 const express = require("express");
-const dataSource = require("./utils").dataSource;
+const { dataSource } = require("./utils");
 const WilderController = require("./controller/wilder_controller");
 const SkillController = require("./controller/skill_controller");
 
@@ -28,13 +28,14 @@ app.put("/api/skill/:id", SkillController.update);
 
 app.delete("/api/skill/:id", SkillController.delete);
 
+app.post("/api/wilder/:wilderId/skill/:skillId/add", WilderController.addSkill);
 
-
+const port = 3000;
 
 
 const start = async () => {
     await dataSource.initialize();
-    app.listen(3000, () => console.log("Server started on 3000"));
+    app.listen(port, () => console.log(`Server started on ${port}`));
 };
 
 start();

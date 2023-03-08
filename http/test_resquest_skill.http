@@ -2,7 +2,7 @@ POST http://localhost:3000/api/skill
 Content-Type : application/json
 
 {
-    "name": "Java" 
+    "name": ".Net" 
 }
 
 ###
@@ -11,7 +11,7 @@ GET http://localhost:3000/api/skill
 
 ###
 
-PUT http://localhost:3000/api/skill/1
+PUT http://localhost:3000/api/skill/8
 Content-Type: application/json
 
 {
@@ -20,13 +20,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/skill/7
+DELETE http://localhost:3000/api/skill/8
 
 ###
 
-POST http://localhost:3000/api/skill
-Content-Type : application/json
-
-{
-    "name": "test1" 
-}
