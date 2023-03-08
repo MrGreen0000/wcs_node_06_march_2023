@@ -1,4 +1,7 @@
+const { Index, Unique, Entity } = require("typeorm");
+
 const EntitySchema = require("typeorm").EntitySchema;
+
 
 module.exports = new EntitySchema({
     name: "Wilder",

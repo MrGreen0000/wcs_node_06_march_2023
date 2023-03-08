@@ -1,25 +1,24 @@
 const dataSource = require("../utils").dataSource;
-const Wilder = require("../entities/wilder_entity");
-
+const Skill = require("../entities/skill_entity");
 
 module.exports = {
     create: async (req, res) => {
         try {
             await dataSource
-                .getRepository(Wilder)
+                .getRepository(Skill)
                 .save(req.body)
             res.send("Created wilder");
         } catch (error) {
-
-            console.log(error)
-            res.status(404).send("Error while creating wilder");
+            if (error.code === "SQLITE_CONSTRAINT") {
+                res.status(409).send("The skill existing");
+            }
 
         }
     },
     read: async (req, res) => {
         try {
             const wilders = await dataSource
-                .getRepository(Wilder)
+                .getRepository(Skill)
                 .find()
             res.send(wilders);
 
@@ -33,7 +32,7 @@ module.exports = {
     update: async (req, res) => {
         try {
             await dataSource
-                .getRepository(Wilder)
+                .getRepository(Skill)
                 .update(req.params.id, req.body)
 
             res.send("Updated wilder !");
@@ -47,7 +46,7 @@ module.exports = {
         // DELETE http://localhost:3000/api/wilder/:id
         try {
             await dataSource
-                .getRepository(Wilder)
+                .getRepository(Skill)
                 .delete(req.params.id)
 
             res.send(data);
@@ -57,15 +56,4 @@ module.exports = {
         }
     },
 
-    addSkill: async (req, res) => {
-        try {
-            await dataSource
-                .getRepository(Skill)
-                .save(req.body);
-            res.send("Add a skill");
-        } catch (error) {
-            console.log(error);
-            res.status(404).send("Une erreur est survenu");
-        }
-    }
 };

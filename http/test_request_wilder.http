@@ -1,0 +1,33 @@
+POST http://localhost:3000/api/wilder
+Content-Type : application/json
+
+{
+    "name": "PHP" 
+}
+
+###
+
+GET http://localhost:3000/api/wilder
+
+###
+
+PUT http://localhost:3000/api/wilder/5
+Content-Type: application/json
+
+{
+    "name": "Spider man"
+}
+
+###
+
+DELETE http://localhost:3000/api/wilder/7
+
+###
+
+POST http://localhost:3000/api/skill
+Content-Type : application/json
+
+{
+    "name": "test1" 
+}
+
