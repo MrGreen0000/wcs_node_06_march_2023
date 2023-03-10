@@ -1,4 +1,4 @@
-POST http://localhost:3000/api/skill
+POST http://localhost:5000/api/skill
 Content-Type : application/json
 
 {
@@ -7,11 +7,11 @@ Content-Type : application/json
 
 ###
 
-GET http://localhost:3000/api/skill
+GET http://localhost:5000/api/skill
 
 ###
 
-PUT http://localhost:3000/api/skill/8
+PUT http://localhost:5000/api/skill/8
 Content-Type: application/json
 
 {
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/skill/8
+DELETE http://localhost:5000/api/skill/8
 
 ###
 

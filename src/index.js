@@ -1,10 +1,16 @@
 const express = require("express");
+const cors = require("cors");
 const { dataSource } = require("./utils");
+
 const WilderController = require("./controller/wilder_controller");
 const SkillController = require("./controller/skill_controller");
 
 
 const app = express();
+
+const port = 5000;
+
+app.use(cors());
 
 app.use(express.json());
 
@@ -30,7 +36,7 @@ app.delete("/api/skill/:id", SkillController.delete);
 
 app.post("/api/wilder/:wilderId/skill/:skillId/add", WilderController.addSkill);
 
-const port = 3000;
+
 
 
 const start = async () => {
